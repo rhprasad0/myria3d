@@ -1,0 +1,18 @@
+{
+    "pipeline": [
+        "./data/psu.las",
+        {
+            "type": "filters.colorization",
+            "raster": "./data/reproj_ortho.tif",
+            "dimensions": "Red:1:256.0, Green:2:256.0, Blue:3:256.0, Infrared:4:256.0"
+        },
+        {
+            "type": "writers.las",
+            "filename": "./data/psu_colorized.las",
+            "extra_dims": "all",
+            "minor_version": "4",
+            "dataformat_id": "8",
+            "forward": "all"
+        }
+    ]
+}
