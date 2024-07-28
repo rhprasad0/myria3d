@@ -1,9 +1,9 @@
 {
     "pipeline": [
-        "./data/psu.las",
+        "./data/psu_reproj.las",
         {
             "type": "filters.colorization",
-            "raster": "./data/reproj_ortho.tif",
+            "raster": "./data/psu_ortho_reproj.tif",
             "dimensions": "Red:1:256.0, Green:2:256.0, Blue:3:256.0, Infrared:4:256.0"
         },
         {
