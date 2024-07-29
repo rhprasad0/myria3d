@@ -11,7 +11,7 @@ echo
 # Reproject point cloud + orthoimage to EPSG: 6347 (meters)
 gdalwarp -t_srs EPSG:6347 ./data/psu_ortho.tif ./data/psu_ortho_reproj.tif
 pdal translate ./data/psu.las ./data/psu_reproj.las -f filters.reprojection \
-  --filters.reprojection.out_srs="EPSG:6347"
+  --filters.reprojection.out_srs="EPSG:6347+5703" # UTM + NAVD88 meters
 echo "Reprojected PC + Ortho"
 echo
 
