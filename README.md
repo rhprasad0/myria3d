@@ -1,38 +1,15 @@
-<div align="center">
+# Using Myria3D + FRACTAL model for lidar point cloud classification
 
-# Myria3D: Aerial Lidar HD Semantic Segmentation with Deep Learning
+See resulting point cloud video here: https://youtu.be/z_7FhqLX5lo
 
+See pipeline.sh for the steps to convert data from PASDA into something that Myria3D will take. You will need to install GDAL to reproject the orthophoto. I used lastools to set all the classes to 1 prior to inference, but PDAL can probably do the same thing, which is installed when you install the Myria3D repo per their instructions. 
 
-<a href="https://pytorch.org/get-started/locally/"><img alt="PyTorch" src="https://img.shields.io/badge/PyTorch-ee4c2c?logo=pytorch&logoColor=white"></a>
-<a href="https://pytorchlightning.ai/"><img alt="Lightning" src="https://img.shields.io/badge/-Lightning-792ee5?logo=pytorchlightning&logoColor=white"></a>
-<a href="https://hydra.cc/"><img alt="Config: Hydra" src="https://img.shields.io/badge/Config-Hydra-89b8cd"></a>
+The FRACTAL model can be downloaded on Hugging Face and is a huge improvement over the default model provided with Myria3D.
 
-[![](https://shields.io/badge/-Lightning--Hydra--Template-017F2F?style=flat&logo=github&labelColor=303030)](https://github.com/ashleve/lightning-hydra-template)
+Myria3D + FRACTAL is meant to be used for the French lidar HD project, so performing inference on data from outside of France is going to be lackluster in terms of results. That said, the results of this quick experiment seem to be an okay starting point for a human to begin making edits. 
 
-[![CICD](https://github.com/IGNF/myria3d/actions/workflows/cicd.yaml/badge.svg)](https://github.com/IGNF/myria3d/actions/workflows/cicd.yaml)
-[![Documentation Build](https://github.com/IGNF/myria3d/actions/workflows/gh-pages.yml/badge.svg)](https://github.com/IGNF/myria3d/actions/workflows/gh-pages.yml)
-</div>
-<br><br>
+More in-depth commentary is on my LinkedIn. Feel free to reach out with any questions.
 
-
-Myria3D is a deep learning library designed with a focused scope: the multiclass semantic segmentation of large scale, high density aerial Lidar points cloud.
-
-The library implements the training of 3D Segmentation neural networks, with optimized data-processing and evaluation logics at fit time. Inference on unseen, large scale point cloud is also supported.
-It allows for the evaluation of single-class IoU on the full point cloud, which results in reliable model evaluation.
-
-Myria3D is built upon [PyTorch](https://pytorch.org/). It keeps the standard data format 
-from [Pytorch-Geometric](https://pytorch-geometric.readthedocs.io/). 
-Its structure was bootstraped from [this code template](https://github.com/ashleve/lightning-hydra-template),
-which heavily relies on [Hydra](https://hydra.cc/) and [Pytorch-Lightning](https://github.com/PyTorchLightning/pytorch-lightning) to enable flexible and rapid iterations of deep learning experiments.
-
-Although the library can be extended with new neural network architectures or new data signatures, it makes some opiniated choices in terms of neural network architecture, data processing logics, and inference logic. Indeed, it is initially built with the [French "Lidar HD" project](https://geoservices.ign.fr/lidarhd) in mind, with the ambition to map France in 3D with 10 pulse/m² aerial Lidar by 2025. The data will be openly available, including a semantic segmentation with a minimal number of classes: ground, vegetation, buildings, vehicles, bridges, others. 
-
-> &rarr; For installation and usage, please refer to [**Documentation**](https://ignf.github.io/myria3d/).
-
-> &rarr; A stable, production-ready version of Myria3D is tracked by a [Production Release](https://github.com/IGNF/myria3d/releases/tag/prod-release-tag). In the release's assets are a trained multiclass segmentation model as well as the necessary configuration file to perform inference on French "Lidar HD" data. Those assets are provided for convenience, and are subject to change in time to reflect latest model training.
-___
-
-Please cite Myria3D if it helped your own research. Here is an example BibTex entry:
 ```
 @misc{gaydon2022myria3d,
   title={Myria3D: Deep Learning for the Semantic Segmentation of Aerial Lidar Point Clouds},
@@ -41,4 +18,16 @@ Please cite Myria3D if it helped your own research. Here is an example BibTex en
   year={2022},
   note={IGN (French Mapping Agency)},
 }
+
+@misc{gaydon2024fractal,
+      title={FRACTAL: An Ultra-Large-Scale Aerial Lidar Dataset for 3D Semantic Segmentation of Diverse Landscapes}, 
+      author={Charles Gaydon and Michel Daab and Floryne Roche},
+      year={2024},
+      eprint={TBD},
+      archivePrefix={arXiv},
+      url={https://arxiv.org/abs/TBD}
+      primaryClass={cs.CV}
+}
+
+Lidar data and NAIP orthophoto courtesy of PASDA: https://www.pasda.psu.edu/contact.html
 ```
